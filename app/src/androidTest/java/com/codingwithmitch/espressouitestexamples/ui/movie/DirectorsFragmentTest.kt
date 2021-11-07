@@ -13,26 +13,26 @@ import org.junit.Test
 import org.junit.runner.RunWith
 
 @RunWith(AndroidJUnit4ClassRunner::class)
-class DirectorsFragmentTest{
-
+class DirectorsFragmentTest {
 
     @Test
     fun test_isDirectorsListVisible() {
-
-        // GIVEN
-        val directors = arrayListOf("R.J. Stewart", "James Vanderbilt")
+        val directors = arrayListOf("Anthony Russo", "Joe Russo")
         val fragmentFactory = MovieFragmentFactory()
         val bundle = Bundle()
         bundle.putStringArrayList("args_directors", directors)
+
         val scenario = launchFragmentInContainer<DirectorsFragment>(
             fragmentArgs = bundle,
             factory = fragmentFactory
         )
 
-        // VERIFY
-        onView(withId(R.id.directors_text))
-            .check(matches(withText(
-                DirectorsFragment.stringBuilderForDirectors(directors)
-            )))
+        onView(withId(R.id.directors_text)).check(
+            matches(
+                withText(
+                    DirectorsFragment.stringBuilderForDirectors(directors)
+                )
+            )
+        )
     }
 }

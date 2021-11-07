@@ -9,4 +9,5 @@ import org.junit.runners.Suite
     DirectorsFragmentTest::class,
     StarActorsFragmentTest::class
 )
-class MovieFragmentTestSuite
+class MovieFragmentTestSuit {
+}
