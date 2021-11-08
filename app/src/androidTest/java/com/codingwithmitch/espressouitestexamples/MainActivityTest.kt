@@ -24,20 +24,18 @@ import org.junit.runner.RunWith
 
 
 @RunWith(AndroidJUnit4ClassRunner::class)
-class MainActivityTest{
+class MainActivityTest {
 
-    @get:Rule
+    @get: Rule
     val intentsTestRule = IntentsTestRule(MainActivity::class.java)
 
     @Test
-    fun  test_validateIntentSentToPickPackage() {
-
-        // GIVEN
+    fun test_validateIntentSentToPickPackage() {
         val expectedIntent: Matcher<Intent> = allOf(
             hasAction(Intent.ACTION_PICK),
             hasData(MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
         )
-        val activityResult = createGalleryPickActivityResultStub()
+        val activityResult = createGalleryPickActivityResultResultStub()
         intending(expectedIntent).respondWith(activityResult)
 
         // Execute and Verify
@@ -45,29 +43,15 @@ class MainActivityTest{
         intended(expectedIntent)
     }
 
-    private fun createGalleryPickActivityResultStub(): ActivityResult {
-        val resources: Resources = InstrumentationRegistry.getInstrumentation().context.resources
+    private fun createGalleryPickActivityResultResultStub(): ActivityResult {
+        val resource: Resources = InstrumentationRegistry.getInstrumentation().context.resources
         val imageUri = Uri.parse(
-            ContentResolver.SCHEME_ANDROID_RESOURCE + "://" +
-                    resources.getResourcePackageName(R.drawable.ic_launcher_background) + '/' +
-                    resources.getResourceTypeName(R.drawable.ic_launcher_background) + '/' +
-                    resources.getResourceEntryName(R.drawable.ic_launcher_background)
+            ContentResolver.SCHEME_ANDROID_RESOURCE + "://" + resource.getResourcePackageName(R.drawable.ic_launcher_background) + "/" +
+                    resource.getResourceTypeName(R.drawable.ic_launcher_background) + "/" +
+                    resource.getResourceEntryName(R.drawable.ic_launcher_background)
         )
         val resultIntent = Intent()
-        resultIntent.setData(imageUri)
+        resultIntent.data = imageUri
         return ActivityResult(RESULT_OK, resultIntent)
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
