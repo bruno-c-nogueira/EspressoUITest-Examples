@@ -17,7 +17,7 @@ import org.junit.Test
 import org.junit.runner.RunWith
 
 @RunWith(AndroidJUnit4ClassRunner::class)
-class MovieListFragmentTest{
+class MovieListFragmentTest {
 
     @get:Rule
     val activityRule = ActivityScenarioRule(MainActivity::class.java)
@@ -25,75 +25,83 @@ class MovieListFragmentTest{
     val LIST_ITEM_IN_TEST = 4
     val MOVIE_IN_TEST = FakeMovieData.movies[LIST_ITEM_IN_TEST]
 
-
     @Test
-    fun test_isListFragmentVisible_onAppLaunch() {
+    fun test_isListFragmentVisible() {
         onView(withId(R.id.recycler_view)).check(matches(isDisplayed()))
     }
 
     @Test
-    fun test_selectListItem_isDetailFragmentVisible() {
-        // Click list item #LIST_ITEM_IN_TEST
-        onView(withId(R.id.recycler_view))
-            .perform(actionOnItemAtPosition<MovieViewHolder>(LIST_ITEM_IN_TEST, click()))
+    fun test_onSelectListItem_DetailFragmentIsVisible() {
+        //CLICK ITEM ON RECYCLER
+        onView(withId(R.id.recycler_view)).perform(
+            actionOnItemAtPosition<MovieViewHolder>(
+                LIST_ITEM_IN_TEST,
+                click()
+            )
+        )
 
-        // Confirm nav to DetailFragment and display title
         onView(withId(R.id.movie_title)).check(matches(withText(MOVIE_IN_TEST.title)))
     }
 
     @Test
     fun test_backNavigation_toMovieListFragment() {
-        // Click list item #LIST_ITEM_IN_TEST
-        onView(withId(R.id.recycler_view))
-            .perform(actionOnItemAtPosition<MovieViewHolder>(LIST_ITEM_IN_TEST, click()))
+        //CLICK ITEM ON RECYCLER
+        onView(withId(R.id.recycler_view)).perform(
+            actionOnItemAtPosition<MovieViewHolder>(
+                LIST_ITEM_IN_TEST,
+                click()
+            )
+        )
 
-        // Confirm nav to DetailFragment and display title
         onView(withId(R.id.movie_title)).check(matches(withText(MOVIE_IN_TEST.title)))
 
         pressBack()
 
-        // Confirm MovieListFragment in view
         onView(withId(R.id.recycler_view)).check(matches(isDisplayed()))
+
     }
 
     @Test
     fun test_navDirectorsFragment_validateDirectorsList() {
+        onView(withId(R.id.recycler_view)).perform(
+            actionOnItemAtPosition<MovieViewHolder>(
+                LIST_ITEM_IN_TEST,
+                click()
+            )
+        )
 
-        // Click list item #LIST_ITEM_IN_TEST
-        onView(withId(R.id.recycler_view))
-            .perform(actionOnItemAtPosition<MovieViewHolder>(LIST_ITEM_IN_TEST, click()))
-
-        // Confirm nav to DetailFragment and display title
         onView(withId(R.id.movie_title)).check(matches(withText(MOVIE_IN_TEST.title)))
 
-        // Nav to DirectorsFragment
         onView(withId(R.id.movie_directiors)).perform(click())
 
-        // Confirm correct directors are visible
-        onView(withId(R.id.directors_text))
-            .check(matches(withText(
-                DirectorsFragment.stringBuilderForDirectors(MOVIE_IN_TEST.directors!!)
-            )))
+        val directors = MOVIE_IN_TEST.directors
+        val verifyDirectorsValue = DirectorsFragment.stringBuilderForDirectors(directors!!)
+
+        onView(withId(R.id.directors_text)).check(matches(withText(verifyDirectorsValue)))
+
     }
 
     @Test
-    fun test_navStarActorsFragment_validateActorsList() {
-        // Click list item #LIST_ITEM_IN_TEST
-        onView(withId(R.id.recycler_view))
-            .perform(actionOnItemAtPosition<MovieViewHolder>(LIST_ITEM_IN_TEST, click()))
+    fun test_navStarActors_validateActorsList() {
+        onView(withId(R.id.recycler_view)).perform(
+            actionOnItemAtPosition<MovieViewHolder>(
+                LIST_ITEM_IN_TEST,
+                click()
+            )
+        )
 
-        // Confirm nav to DetailFragment and display title
         onView(withId(R.id.movie_title)).check(matches(withText(MOVIE_IN_TEST.title)))
 
-        // Nav to DirectorsFragment
         onView(withId(R.id.movie_star_actors)).perform(click())
 
-        // Confirm correct directors are visible
-        onView(withId(R.id.star_actors_text))
-            .check(matches(withText(
-                StarActorsFragment.stringBuilderForStarActors(MOVIE_IN_TEST.star_actors!!)
-            )))
+        val actors = MOVIE_IN_TEST.star_actors
+        val verifyActorsValue = StarActorsFragment.stringBuilderForStarActors(actors!!)
+
+        onView(withId(R.id.star_actors_text)).check(matches(withText(verifyActorsValue)))
+
     }
+
+
 }
 
 
