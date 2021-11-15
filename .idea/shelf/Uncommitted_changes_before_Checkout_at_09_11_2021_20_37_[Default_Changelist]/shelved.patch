@@ -1,0 +1,61 @@
+Index: app/src/main/java/com/codingwithmitch/espressouitestexamples/MainActivity.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.codingwithmitch.espressouitestexamples\r\n\r\nimport android.os.Bundle\r\nimport androidx.appcompat.app.AppCompatActivity\r\nimport com.afollestad.materialdialogs.MaterialDialog\r\nimport com.afollestad.materialdialogs.input.input\r\nimport kotlinx.android.synthetic.main.activity_main.*\r\n\r\n\r\nclass MainActivity : AppCompatActivity(){\r\n\r\n    private val TAG: String = \"AppDebug\"\r\n\r\n\r\n    override fun onCreate(savedInstanceState: Bundle?) {\r\n        super.onCreate(savedInstanceState)\r\n        setContentView(R.layout.activity_main)\r\n\r\n        button_launch_dialog.setOnClickListener {\r\n            showDialog()\r\n        }\r\n\r\n    }\r\n\r\n    private fun showDialog(){\r\n        MaterialDialog(this)\r\n            .show {\r\n                input (\r\n                    waitForPositiveButton = true,\r\n                    allowEmpty = false\r\n                ){ dialog, name ->\r\n                    setNameToTextView(name.toString())\r\n                }\r\n                title(R.string.text_enter_name)\r\n                positiveButton(R.string.text_ok)\r\n            }\r\n    }\r\n\r\n    private fun setNameToTextView(name: String){\r\n        text_name.text = name\r\n    }\r\n\r\n}\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/codingwithmitch/espressouitestexamples/MainActivity.kt b/app/src/main/java/com/codingwithmitch/espressouitestexamples/MainActivity.kt
+--- a/app/src/main/java/com/codingwithmitch/espressouitestexamples/MainActivity.kt	(revision facfceb6cad142c1a48a9d41ca6b2c2d66f7f703)
++++ b/app/src/main/java/com/codingwithmitch/espressouitestexamples/MainActivity.kt	(date 1636501074247)
+@@ -1,5 +1,6 @@
+ package com.codingwithmitch.espressouitestexamples
+ 
++import android.annotation.SuppressLint
+ import android.os.Bundle
+ import androidx.appcompat.app.AppCompatActivity
+ import com.afollestad.materialdialogs.MaterialDialog
+@@ -22,6 +23,7 @@
+ 
+     }
+ 
++    @SuppressLint("CheckResult")
+     private fun showDialog(){
+         MaterialDialog(this)
+             .show {
+Index: .idea/markdown-navigator-enh.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/markdown-navigator-enh.xml b/.idea/markdown-navigator-enh.xml
+new file mode 100644
+--- /dev/null	(date 1636500928231)
++++ b/.idea/markdown-navigator-enh.xml	(date 1636500928231)
+@@ -0,0 +1,10 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="MarkdownEnhProjectSettings">
++    <AnnotatorSettings targetHasSpaces="true" linkCaseMismatch="true" wikiCaseMismatch="true" wikiLinkHasDashes="true" notUnderWikiHome="true" targetNotWikiPageExt="true" notUnderSourceWikiHome="true" targetNameHasAnchor="true" targetPathHasAnchor="true" wikiLinkHasSlash="true" wikiLinkHasSubdir="true" wikiLinkHasOnlyAnchor="true" linkTargetsWikiHasExt="true" linkTargetsWikiHasBadExt="true" notUnderSameRepo="true" targetNotUnderVcs="false" linkNeedsExt="true" linkHasBadExt="true" linkTargetNeedsExt="true" linkTargetHasBadExt="true" wikiLinkNotInWiki="true" imageTargetNotInRaw="true" repoRelativeAcrossVcsRoots="true" multipleWikiTargetsMatch="true" unresolvedLinkReference="true" linkIsIgnored="true" anchorIsIgnored="true" anchorIsUnresolved="true" anchorLineReferenceIsUnresolved="true" anchorLineReferenceFormat="true" anchorHasDuplicates="true" abbreviationDuplicates="true" abbreviationNotUsed="true" attributeIdDuplicateDefinition="true" attributeIdNotUsed="true" footnoteDuplicateDefinition="true" footnoteUnresolved="true" footnoteDuplicates="true" footnoteNotUsed="true" macroDuplicateDefinition="true" macroUnresolved="true" macroDuplicates="true" macroNotUsed="true" referenceDuplicateDefinition="true" referenceUnresolved="true" referenceDuplicates="true" referenceNotUsed="true" referenceUnresolvedNumericId="true" enumRefDuplicateDefinition="true" enumRefUnresolved="true" enumRefDuplicates="true" enumRefNotUsed="true" enumRefLinkUnresolved="true" enumRefLinkDuplicates="true" simTocUpdateNeeded="true" simTocTitleSpaceNeeded="true" />
++    <HtmlExportSettings updateOnSave="false" parentDir="" targetDir="" cssDir="css" scriptDir="js" plainHtml="false" imageDir="" copyLinkedImages="false" imagePathType="0" targetPathType="2" targetExt="" useTargetExt="false" noCssNoScripts="false" useElementStyleAttribute="false" linkToExportedHtml="true" exportOnSettingsChange="true" regenerateOnProjectOpen="false" linkFormatType="HTTP_ABSOLUTE" />
++    <LinkMapSettings>
++      <textMaps />
++    </LinkMapSettings>
++  </component>
++</project>
+\ No newline at end of file
+Index: app/src/androidTest/java/com/codingwithmitch/espressouitestexamples/ToasterMatcher.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/androidTest/java/com/codingwithmitch/espressouitestexamples/ToasterMatcher.kt b/app/src/androidTest/java/com/codingwithmitch/espressouitestexamples/ToasterMatcher.kt
+new file mode 100644
+--- /dev/null	(date 1636501058470)
++++ b/app/src/androidTest/java/com/codingwithmitch/espressouitestexamples/ToasterMatcher.kt	(date 1636501058470)
+@@ -0,0 +1,4 @@
++package com.codingwithmitch.espressouitestexamples
++
++class ToasterMatcher {
++}
+\ No newline at end of file

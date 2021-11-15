@@ -35,6 +35,18 @@ android {
     androidExtensions {
         experimental = true
     }
+    sourceSets {
+        release {
+            java {
+                srcDirs 'src\\release\\java'
+            }
+        }
+        debug {
+            java {
+                srcDirs 'src\\debug\\java'
+            }
+        }
+    }
 }
 
 dependencies {
