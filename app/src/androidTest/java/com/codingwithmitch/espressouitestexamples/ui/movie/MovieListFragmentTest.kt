@@ -13,6 +13,7 @@ import com.codingwithmitch.espressotestsexamples.util.EspressoIdlingResource
 import com.codingwithmitch.espressouitestexamples.R
 import com.codingwithmitch.espressouitestexamples.data.FakeMovieData
 import com.codingwithmitch.espressouitestexamples.ui.movie.MoviesListAdapter.*
+import com.codingwithmitch.espressouitestexamples.util.EspressoIdlingResourceRule
 import org.hamcrest.CoreMatchers.not
 import org.junit.*
 import org.junit.runner.RunWith
@@ -20,7 +21,7 @@ import org.junit.runners.MethodSorters
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 @RunWith(AndroidJUnit4ClassRunner::class)
-class MovieListFragmentTest{
+class MovieListFragmentTest {
 
     val LIST_ITEM_IN_TEST = 4
     val MOVIE_IN_TEST = FakeMovieData.movies[LIST_ITEM_IN_TEST]
@@ -28,16 +29,8 @@ class MovieListFragmentTest{
     @get:Rule
     val activityRule = ActivityScenarioRule(MainActivity::class.java)
 
-
-    @Before
-    fun registerIdlingResource() {
-        IdlingRegistry.getInstance().register(EspressoIdlingResource.countingIdlingResource)
-    }
-
-    @After
-    fun unregisterIdlingResource() {
-        IdlingRegistry.getInstance().unregister(EspressoIdlingResource.countingIdlingResource)
-    }
+    @get: Rule
+    val espressoIdlingResourceRule = EspressoIdlingResourceRule()
 
     @Test
     fun a_test_isListFragmentVisible_onAppLaunch() {
@@ -88,9 +81,13 @@ class MovieListFragmentTest{
 
         // Confirm correct directors are visible
         onView(withId(R.id.directors_text))
-            .check(matches(withText(
-                DirectorsFragment.stringBuilderForDirectors(MOVIE_IN_TEST.directors!!)
-            )))
+            .check(
+                matches(
+                    withText(
+                        DirectorsFragment.stringBuilderForDirectors(MOVIE_IN_TEST.directors!!)
+                    )
+                )
+            )
     }
 
     @Test
@@ -108,9 +105,13 @@ class MovieListFragmentTest{
 
         // Confirm correct directors are visible
         onView(withId(R.id.star_actors_text))
-            .check(matches(withText(
-                StarActorsFragment.stringBuilderForStarActors(MOVIE_IN_TEST.star_actors!!)
-            )))
+            .check(
+                matches(
+                    withText(
+                        StarActorsFragment.stringBuilderForStarActors(MOVIE_IN_TEST.star_actors!!)
+                    )
+                )
+            )
     }
 
 
